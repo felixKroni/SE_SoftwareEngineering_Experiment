@@ -53,7 +53,7 @@ jobs:
       - name: Install Semgrep
         run: python3 -m pip install --upgrade pip semgrep
 
-      - name: Run Semgrep (SAST)
+      - name: Run Semgrep (SAST) - JSON output
         continue-on-error: true
         run: |
           semgrep scan \
@@ -61,8 +61,17 @@ jobs:
             --config p/java \
             --config p/typescript \
             --metrics=off \
-            --sarif --output semgrep.sarif \
-            --json --json-output semgrep.json
+            --json --output semgrep.json
+
+      - name: Run Semgrep (SAST) - SARIF output
+        continue-on-error: true
+        run: |
+          semgrep scan \
+            --config p/owasp-top-ten \
+            --config p/java \
+            --config p/typescript \
+            --metrics=off \
+            --sarif --output semgrep.sarif
 
       # 5) Upload results for your evaluation (TP/FP/FN/TN etc.)
       - name: Upload Semgrep artifacts
