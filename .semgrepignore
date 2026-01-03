@@ -1,0 +1,13 @@
+# dependencies
+**/node_modules/**
+**/dist/**
+**/build/**
+**/target/**
+**/.angular/**
+**/.gradle/**
+**/.mvn/**
+
+# tooling
+**/.git/**
+**/.idea/**
+**/.vscode/**
