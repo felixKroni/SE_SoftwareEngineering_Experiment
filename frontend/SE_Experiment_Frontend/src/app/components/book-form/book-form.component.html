@@ -1,0 +1,83 @@
+<div class="container">
+  <h1>{{ isEditMode ? 'Edit Book' : 'Add New Book' }}</h1>
+
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title *</label>
+      <input 
+        type="text" 
+        id="title" 
+        name="title" 
+        [(ngModel)]="book.title" 
+        required
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author *</label>
+      <input 
+        type="text" 
+        id="author" 
+        name="author" 
+        [(ngModel)]="book.author" 
+        required
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="isbn">ISBN *</label>
+      <!-- VULNERABILITY: No format validation for ISBN - could allow injection - TRUE POSITIVE -->
+      <input 
+        type="text" 
+        id="isbn" 
+        name="isbn" 
+        [(ngModel)]="book.isbn" 
+        required
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price *</label>
+      <!-- VULNERABILITY: No validation for negative numbers - TRUE POSITIVE -->
+      <input 
+        type="number" 
+        id="price" 
+        name="price" 
+        [(ngModel)]="book.price" 
+        required
+        step="0.01"
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="year">Year *</label>
+      <input 
+        type="number" 
+        id="year" 
+        name="year" 
+        [(ngModel)]="book.year" 
+        required
+        class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <!-- VULNERABILITY: Large text field without length limit - could cause DoS - TRUE POSITIVE -->
+      <textarea 
+        id="description" 
+        name="description" 
+        [(ngModel)]="book.description" 
+        rows="4"
+        class="form-control"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="!bookForm.form.valid">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>
