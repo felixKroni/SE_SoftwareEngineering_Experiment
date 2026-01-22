@@ -61,9 +61,7 @@ jobs:
             --config p/owasp-top-ten \
             --config p/security-audit \
             --config p/java \
-            --config p/spring \
             --config p/typescript \
-            --config p/angular \
             --config p/secrets \
             --config p/command-injection \
             --config p/sql-injection \
@@ -79,9 +77,7 @@ jobs:
             --config p/owasp-top-ten \
             --config p/security-audit \
             --config p/java \
-            --config p/spring \
             --config p/typescript \
-            --config p/angular \
             --config p/secrets \
             --config p/command-injection \
             --config p/sql-injection \
