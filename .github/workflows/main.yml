@@ -67,6 +67,8 @@ jobs:
             --config p/sql-injection \
             --config p/xss \
             --config p/insecure-transport \
+            --config p/default \
+            --config p/findsecbugs \
             --metrics=off \
             --json --output semgrep.json
 
@@ -83,6 +85,8 @@ jobs:
             --config p/sql-injection \
             --config p/xss \
             --config p/insecure-transport \
+            --config p/findsecbugs \
+            --config p/default \
             --metrics=off \
             --sarif --output semgrep.sarif
 
